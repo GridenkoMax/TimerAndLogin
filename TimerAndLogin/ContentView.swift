@@ -8,12 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var timer = TimeCounter()
+    @EnvironmentObject private var user: UserSettings
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Hi,\(user.name )")
+                .font(.largeTitle)
+                .padding(.top, 100)
+  
+            Text(timer.counter.formatted())
+                .font(.largeTitle)
+                .padding(.top, 100)
+            Spacer()
+   
+            ButtonView(timer: timer)
+                Spacer()
+            LogOutButtom()
+ 
         }
         .padding()
     }
@@ -21,4 +33,7 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(UserSettings())
 }
+
+

@@ -11,7 +11,7 @@ import SwiftUI
 struct TimerAndLoginApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
