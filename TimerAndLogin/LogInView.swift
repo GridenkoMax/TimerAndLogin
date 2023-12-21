@@ -9,16 +9,16 @@ import SwiftUI
 
 struct LogInView: View {
     @EnvironmentObject private var user: UserSettings
-    @State private var name  = ""
+    
     
     var body: some View {
         VStack{
             HStack {
-                TextField("Enter your name", text: $name)
+                TextField("Enter your name", text: user.$name)
                     .multilineTextAlignment(.center)
                 
-                Text("\(name.count)")
-                    .foregroundColor(name.count >= 3 ? .green : .red )
+                Text("\(user.name.count)")
+                    .foregroundColor(user.name.count >= 3 ? .green : .red )
                     .font(.title)
                     .fontWeight(.bold)
                     .padding()
@@ -27,14 +27,14 @@ struct LogInView: View {
               Label("Ok", systemImage: "person.crop.circle.badge.checkmark")
                     .font(.title)
             }
-            .disabled(name.count >= 3 ? false : true)
+            .disabled(user.name.count >= 3 ? false : true)
         }
     }
 }
 extension LogInView {
     private func logIn() {
-        if !name.isEmpty {
-            user.name = name
+        if !user.name.isEmpty {
+            user.name = user.name
             user.isLoggedIn.toggle()
             
         }
